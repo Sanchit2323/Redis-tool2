@@ -1,0 +1,7 @@
+---
+
+- include_tasks: configure_redis.yml
+
+- name: Configure Redis replication
+  command: redis-cli -h {{ ansible_host }} replicaof {{ hostvars[groups['redis_nodes'][0]].ansible_host }} {{ redis_port }}
+  when: inventory_hostname != groups['redis_nodes'][0]
