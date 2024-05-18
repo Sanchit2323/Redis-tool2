@@ -2,6 +2,8 @@
 - name: Setup Redis Cluster
   hosts: redis_nodes
   become: true
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
   roles:
     - role: my_redis_cluster_role
       vars:
